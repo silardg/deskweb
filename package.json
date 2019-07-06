@@ -1,0 +1,18 @@
+{
+  "name": "deskweb",
+  "version": "1.0.0",
+  "description": "All your always open web apps in one container",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/silardg/deskweb.git",
+  "keywords": [
+    "Electron"
+  ],
+  "author": "Silard Gal",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^5.0.6"
+  }
+}
