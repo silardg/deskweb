@@ -6,7 +6,7 @@ const path = require('path')
 const Window = require("./src/window")
 const CMenu = require("./src/menu")
 
-let window_main, menu_main
+let window_main, menu_main, window_page_setup
 
 var properties_main_menu = [
   {
@@ -15,6 +15,7 @@ var properties_main_menu = [
         label: 'Setup pages',
         accelerator: 'CmdOrCtrl+S',
         click: () => {
+          window_main.change_file('page_setup.html')
         }
       },
       {
@@ -38,10 +39,14 @@ function main() {
   require('./src/cookies')
 
   window_main = new Window({
-    url: "https://github.com",
+    file: 'index.html',
     properties_preload_script: path.join(__dirname, 'preload.js'),
-    properties_enable_dev: false
+    properties_enable_dev: true,
+    width: 1024,
+    height: 600
   })
+
+  
 
   menu_main = new CMenu({
     properties_application_menu: properties_main_menu
@@ -59,8 +64,17 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
+
 app.on('activate', function () {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  main()
+  require('./src/cookies')
+
+  window_main = new Window({
+    file: 'index.html',
+    properties_preload_script: path.join(__dirname, 'preload.js'),
+    properties_enable_dev: true,
+    width: 1024,
+    height: 600
+  })
 })

@@ -6,18 +6,24 @@ const properties_window_default = {
     show: false
 }
 
+let properties
+
 class Window extends BrowserWindow {
-    constructor({ file, url, properties_window_new, properties_preload_script, ...properties_enable_dev }) {
+    constructor({ file, url, width, height, properties_preload_script, ...properties_enable_dev }) {
+
 
         // creates new browserwindow
-        super({properties_window_default, properties_window_new, webPreferences: { preload: properties_preload_script }})
+        super({width: width, height: height,webPreferences: { preload: properties_preload_script }, resizable: false})
+
+        //this.setSize(_width, _height)
 
         if(file == null) {
             this.loadURL(url)
         } else {
             this.loadFile(file)
         }
-        if(properties_enable_dev) { this.webContents.openDevTools() }
+        
+        this.webContents.openDevTools()
         
         // prevent flickering shit
         this.once('ready-to-show', () => {
@@ -27,6 +33,10 @@ class Window extends BrowserWindow {
 
     toggle_dev() {
        this.webContents.toggleDevTools()
+    }
+
+    change_file(file) {
+        this.loadFile(file)
     }
 }
 
