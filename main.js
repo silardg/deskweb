@@ -8,7 +8,7 @@ const CMenu = require("./src/menu")
 
 let window_main, menu_main
 
-var application_menu = [
+var properties_main_menu = [
   {
     label: 'DeskWeb',
     submenu: [{
@@ -31,51 +31,7 @@ var application_menu = [
     ]
   }
 ];
-if (process.platform == 'darwin') {
-  const name = app.getName();
-  application_menu.unshift({
-    label: name,
-    submenu: [
-      {
-        label: 'About ' + name,
-        role: 'about'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Services',
-        role: 'services',
-        submenu: []
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Hide ' + name,
-        accelerator: 'Command+H',
-        role: 'hide'
-      },
-      {
-        label: 'Hide Others',
-        accelerator: 'Command+Shift+H',
-        role: 'hideothers'
-      },
-      {
-        label: 'Show All',
-        role: 'unhide'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Quit',
-        accelerator: 'Command+Q',
-        click: () => { app.quit(); }
-      },
-    ]
-  });
-}
+
 
 function main() {
 
@@ -88,7 +44,7 @@ function main() {
   })
 
   menu_main = new CMenu({
-    properties_application_menu: application_menu
+    properties_application_menu: properties_main_menu
   })
   
 }
